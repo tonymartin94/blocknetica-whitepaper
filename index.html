@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blocknetica | Age Verification Whitepaper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="The High Cost of Friction: Why Highly Effective Age Verification Should Protect — Not Punish — Your UK E-commerce Business."
+  />
+
+  <style>
+    /* ====== BASIC THEME ======
+       You can tune these 3 colours to match blocknetica.io
+    */
+    :root {
+      --bg: #020617;          /* page background */
+      --bg-alt: #020617;      /* hero background */
+      --card-bg: #020617;     /* section background */
+      --primary: #22c55e;     /* accent / buttons */
+      --primary-soft: rgba(34, 197, 94, 0.12);
+      --text: #e5e7eb;        /* main text */
+      --text-muted: #9ca3af;  /* secondary text */
+      --border: #1f2933;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #020617 0, #000 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 1.1rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* HERO */
+
+    .hero {
+      background: radial-gradient(circle at top left, #111827 0, #020617 55%);
+      border-radius: 24px;
+      padding: 28px 22px 30px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+      margin-bottom: 32px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 1.9rem;
+    }
+
+    .hero h2 {
+      margin: 0 0 16px;
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.18s ease, transform 0.18s ease,
+        box-shadow 0.18s ease, border 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #020617;
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(34, 197, 94, 0.45);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    /* SECTIONS */
+
+    .section {
+      margin-top: 32px;
+      padding: 22px 20px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border);
+    }
+
+    .section h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+    }
+
+    .section p {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: var(--text-muted);
+    }
+
+    .section ul {
+      padding-left: 18px;
+      margin: 10px 0 4px;
+      color: var(--text-muted);
+    }
+
+    .tagline {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .highlight-box {
+      border-radius: 16px;
+      border: 1px dashed var(--border);
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, 0.6);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .pill-stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .pill-stat strong {
+      color: var(--primary);
+    }
+
+    .cta-footer {
+      margin-top: 26px;
+      text-align: center;
+    }
+
+    .cta-footer p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 22px 18px 24px;
+      }
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">BLOCKNETICA</div>
+      <div class="pill">Whitepaper · Age Verification 2025</div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-kicker">Free Industry Whitepaper</div>
+        <h1>
+          The High Cost of Friction:<br />
+          Why “Highly Effective” Age Verification Should Protect — Not Punish —
+          Your UK E-commerce Business
+        </h1>
+        <h2>
+          How vape, CBD, and alcohol retailers are unknowingly losing up to
+          <strong>52% of customers</strong> at checkout — and how
+          Telco-First Age Verification fixes it.
+        </h2>
+
+        <p>
+          UK regulators now expect “highly effective” age assurance, but most
+          solutions pay for compliance with abandoned baskets, frustrated
+          adults, and lost margin. This whitepaper shows you the data — and the
+          path out of the trap.
+        </p>
+
+        <div class="hero-actions">
+          <!-- TODO: point these hrefs to your actual PDF + pilot form -->
+          <a class="btn-primary" href="C:\Users\tonym\OneDrive\Documents\Block Netica\AV\whitepaper.pdf" target="_blank">
+            Download Whitepaper (PDF)
+          </a>
+          <a class="btn-secondary" href="/contact-or-pilot-form">
+            Join the Telco-First AV Pilot
+          </a>
+        </div>
+      </section>
+
+      <!-- SECTION: WHY IT MATTERS -->
+      <section class="section">
+        <div class="tagline">Why this matters</div>
+        <h3>Friction-heavy age checks are taxing every sale.</h3>
+        <div class="grid-2">
+          <div>
+            <p>
+              The Online Safety Act and Trading Standards demand “highly
+              effective” age checks — but the tools most merchants use today
+              were designed for compliance officers, not customers.
+            </p>
+            <ul>
+              <li>Credit file checks fail younger customers with thin histories.</li>
+              <li>
+                Document uploads force buyers to stop, find ID, and upload it
+                at the exact moment they’re ready to pay.
+              </li>
+              <li>
+                Selfie & liveness tests cause more than
+                <strong>52% of shoppers</strong> to abandon checkout entirely.
+              </li>
+            </ul>
+          </div>
+          <div class="highlight-box">
+            <strong>Inside the whitepaper, you’ll see:</strong>
+            <br /><br />
+            <span class="pill-stat"
+              ><strong>20%</strong> drop-off from credit file checks</span
+            >
+            <span class="pill-stat"
+              ><strong>35%</strong> drop-off from document uploads</span
+            >
+            <span class="pill-stat"
+              ><strong>52%</strong> drop-off from selfie / liveness tests</span
+            >
+            <span class="pill-stat"
+              ><strong>5%</strong> drop-off with Telco-First AV</span
+            >
+            <p style="margin-top: 10px;">
+              The result? A potential <strong>10–15% uplift</strong> in completed
+              sales when you remove unnecessary friction from your age checks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: WHAT'S INSIDE -->
+      <section class="section">
+        <div class="tagline">What you’ll learn</div>
+        <h3>What’s inside “The High Cost of Friction”</h3>
+        <ul>
+          <li>
+            How the current AV landscape forces merchants to choose between
+            airtight compliance and healthy conversion.
+          </li>
+          <li>
+            Why “highly effective” does not have to mean “highly intrusive” for
+            your customers.
+          </li>
+          <li>
+            How Telco-First AV uses mobile-network data to confirm age in under
+            8 seconds — no documents, no selfies, no apps.
+          </li>
+          <li>
+            How merchants can move from 80–85% checkout completion to ~95%
+            completion by reducing abandonment to under 5%.
+          </li>
+          <li>
+            Why this model is built for the Tobacco & Vapes Bill era and rising
+            Trading Standards scrutiny.
+          </li>
+        </ul>
+      </section>
+
+      <!-- SECTION: WHO IT'S FOR -->
+      <section class="section">
+        <div class="tagline">Who it’s for</div>
+        <h3>Built for regulated online retailers.</h3>
+        <p>This whitepaper is designed for:</p>
+        <ul>
+          <li>Vape & e-cigarette retailers</li>
+          <li>CBD brands and marketplaces</li>
+          <li>Alcohol delivery and online off-licences</li>
+          <li>Gambling, gaming, and adult-product platforms</li>
+          <li>Compliance teams preparing for tougher UK enforcement in 2025</li>
+        </ul>
+      </section>
+
+      <!-- CTA FOOTER -->
+      <div class="cta-footer">
+        <p>
+          Ready to stop losing good customers just to tick the compliance box?
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn-primary" href="C:\Users\tonym\OneDrive\Documents\Block Netica\AV\whitepaper.pdf" target="_blank">
+            Download the Whitepaper
+          </a>
+          <a class="btn-secondary" href="/contact-or-pilot-form">
+            Talk to Blocknetica About AV
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      © 2025 Blocknetica Ltd · Age Verification & Payments Infrastructure
+    </footer>
+  </div>
+</body>
+</html>
